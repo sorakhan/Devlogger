@@ -1,9 +1,13 @@
 <div class="card card-body mb-4">
-    <form>
+    <form (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Enter something you'd like to record..">
+            <input type="text" name="title" class="form-control" 
+            placeholder="Enter something you'd like to record.."
+            [(ngModel)]="title"
+            >
+
         </div>
-        <input type="submit" value="Log" class="btn btn-light" [disabled]=!this.text>
-        <button type="reset" class="btn btn-warning ml-2" [hidden]=!this.text>Clear</button>
+        <input type="submit" value="Add log" class="btn btn-light" [disabled]=!this.title>
+        <button type="reset" class="btn btn-warning ml-2" [hidden]=!this.title>Clear</button>
     </form>
 </div>

@@ -1,12 +1,19 @@
-<div class="list-group">
-    <div class="list-group-item d-flex justify-content-between align-items-center">
-        <a href="#">Edited DevLogger Display</a>
-        <span class="log-date">09/26/2019</span>
-        <i class="fa fa-remove"></i>
+<div class="list-group" *ngIf="loaded && logs.length > 0">
+    <div *ngFor="let log of logs" 
+        class="list-group-item d-flex justify-content-between align-items-center"
+        [class.list-group-item-secondary]="selectedLog === log">
+        <a (click)="onSelectLog(log)" href="#">{{ log.title }}</a>
+        <span class="log-date">{{ log.date | date: 'short' }}</span>
+        <i (click)="onDeleteLog(log)" class="fa fa-remove"></i>
     </div>
-    <div class="list-group-item d-flex justify-content-between align-items-center">
-        <a href="#">Created and Generated this DevLogger app</a>
-        <span class="log-date">09/26/2019</span>
-        <i class="fa fa-remove"></i>
-    </div>
+</div>
+
+<div *ngIf="loaded && logs.length == 0">
+    <h5>No logs have been logged at all.</h5>
+</div>
+
+<div *ngIf="!loaded">
+    <h5>
+        Loading...
+    </h5>
 </div>
